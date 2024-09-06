@@ -215,6 +215,16 @@ async getApkDownloadUrl(apkId: string): Promise<string | undefined> {
 }
 
 
+ async uploadAndSaveApk(apkFile: File, apk: Apk): Promise<void> {
+  const apkPath = `apks/files/${apk.nombre}_${uuidv4()}`;
+  const apkUrl = await this.uploadFile(apkFile, apkPath);  // Subir el archivo y obtener el URL
+  apk.apkUrl = apkUrl;  // Guardar el URL en el modelo
+  apk.fechaCreacion = new Date();  // Establece la fecha de creación
+  const id = this.createIdDoc();  // Generar ID único para el APK
+  await this.createDocument<Apk>(apk, `apks/${id}`);
+}
+
+
  // Obtener URL del APK desde Firebase Storage y disparar la descarga
   async downloadApkFromFirebase(apkUrl: string): Promise<void> {
     const link = document.createElement('a');
