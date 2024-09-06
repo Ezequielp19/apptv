@@ -215,6 +215,16 @@ async getApkDownloadUrl(apkId: string): Promise<string | undefined> {
 }
 
 
+ // Obtener URL del APK desde Firebase Storage y disparar la descarga
+  async downloadApkFromFirebase(apkUrl: string): Promise<void> {
+    const link = document.createElement('a');
+    link.href = apkUrl;  // Este será el URL obtenido desde Firebase Storage
+    link.setAttribute('download', 'apkFile.apk');  // Puedes personalizar el nombre del archivo aquí
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);  // Remover el elemento después de la descarga
+  }
+
 
 
  // Obtener el documento del usuario
