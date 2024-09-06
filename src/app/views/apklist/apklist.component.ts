@@ -64,14 +64,14 @@ export class ApkListComponent implements OnInit {
   }
 
  // Función para descargar el APK
-  // downloadApk(apkUrl: string): void {
-  //   window.open(apkUrl, '_blank');
-  // }
+  downloadApk(apkUrl: string): void {
+    window.open(apkUrl, '_blank');
+  }
 
   // Llamar al servicio para descargar el APK
-  downloadApk(apkUrl: string) {
-    this.firestoreService.downloadApkFromFirebase(apkUrl);
-  }
+  // downloadApk(apkUrl: string) {
+  //   this.firestoreService.downloadApkFromFirebase(apkUrl);
+  // }
 
 
 }
